@@ -15,5 +15,5 @@ const render = () => {
 render();
 
 if (module.hot) {
-    module.hot.accept('./HellowWorld', render);
+    module.hot.accept('./components/HellowWorld', render);
 }
