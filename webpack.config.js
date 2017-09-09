@@ -20,6 +20,10 @@ module.exports = {
         path: path.join(__dirname, "built"),
         filename: '[name].js',
     },
+	
+	/*eslint: {
+        configFile: path.join(__dirname, 'eslint-config.json'),
+    },*/
 
     resolve: {
         extensions: ['.js', '.jsx']
@@ -33,6 +37,15 @@ module.exports = {
 
     module: {
         rules: [
+			{
+				enforce: "pre",
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: "eslint-loader",
+				options: {
+				  eslintPath: path.join(__dirname, "eslint-config.json"),
+				}
+			},
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
