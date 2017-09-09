@@ -7,3 +7,5 @@ Run in the console :
 3) npm install –g webpack-dev-server
 
 Run dev server : webpack-dev-server
+
+Run server : npm start
