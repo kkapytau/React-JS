@@ -1,19 +1,19 @@
 import React from 'react';
 import { AppContainer } from 'react-hot-loader';
 import ReactDom from 'react-dom';
-import {HellowWorld} from './components/HellowWorld';
+import HellowWorld from './components/HellowWorld';
 
 function render() {
   return ReactDom.render(
-        <AppContainer>
-            <HellowWorld />
-        </AppContainer>,
-        document.getElementById('app')
-    )
+    <AppContainer>
+      <HellowWorld />
+    </AppContainer>,
+    document.getElementById('app')
+  );
 }
 
 render();
 
 if (module.hot) {
-    module.hot.accept('./components/HellowWorld', render);
+  module.hot.accept('./components/HellowWorld', render);
 }

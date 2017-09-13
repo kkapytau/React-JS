@@ -1,5 +1,5 @@
 import React from 'react';
 
-export function HellowWorld() {
-  return  <div className="greet">Hellow World</div>
+export default function HellowWorld() {
+  return <div className="greet">Hellow World</div>;
 }
