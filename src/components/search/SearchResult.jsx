@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function SearchResult(props) {
   return <span id="results">{props.result}</span>;
@@ -9,5 +10,5 @@ SearchResult.defaultProps = {
 };
 
 SearchResult.propTypes = {
-  result: React.PropTypes.string
+  result: PropTypes.string
 };

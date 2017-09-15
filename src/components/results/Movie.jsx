@@ -1,9 +1,10 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 export default function Movie(props) {
+  const popupId = `#${props.movie.unit}`;
   return (
-    <figure data-toggle="modal" data-target="#myModal">
+    <figure data-toggle="modal" data-target={popupId}>
       <img src={props.movie.poster} alt={props.movie.title} />
       <figcaption>
         <span className="title">{props.movie.title}</span>
@@ -19,15 +20,17 @@ Movie.defaultProps = {
     poster: 'Unknown',
     title: 'Unknown',
     date: 'Unknown',
-    category: 'Unknown'
+    category: 'Unknown',
+    unit: -1
   }
 };
 
 Movie.propTypes = {
-  movie: React.PropTypes.shape({
-    poster: React.PropTypes.string,
-    title: React.PropTypes.string,
-    date: React.PropTypes.string,
-    category: React.PropTypes.string
+  movie: PropTypes.shape({
+    poster: PropTypes.string,
+    title: PropTypes.string,
+    date: PropTypes.string,
+    category: PropTypes.string,
+    unit: PropTypes.number
   })
 };

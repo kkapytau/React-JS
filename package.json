@@ -1,5 +1,5 @@
 {
-  "name": "Task1",
+  "name": "Task2",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -31,7 +31,6 @@
     "jest": "^21.0.2",
     "less": "2.7.2",
     "less-loader": "4.0.5",
-    "react-hot-loader": "3.0.0-beta.6",
     "style-loader": "0.18.2",
     "typed-css-modules-loader": "0.0.10",
     "webpack": "^3.5.5",
@@ -39,8 +38,12 @@
     "webpack-hot-middleware": "^2.19.1"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "express": "^4.15.4",
+    "nan": "^2.7.0",
+    "prop-types": "^15.5.10",
     "react": "15.6.1",
+    "react-bootstrap": "^0.31.3",
     "react-dom": "15.6.1",
     "react-hot-loader": "3.0.0-beta.7",
     "react-redux": "^5.0.6",

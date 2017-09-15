@@ -8,7 +8,7 @@ module.exports = {
   context: path.join(__dirname, 'src'),
 
   entry: {
-    hellow: [
+    task2: [
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8081',
       './index.jsx'
@@ -20,6 +20,8 @@ module.exports = {
     path: path.join(__dirname, 'built'),
     filename: '[name].js'
   },
+
+  devtool: 'eval',
 
   /*
   eslint: {
@@ -61,6 +63,10 @@ module.exports = {
           fallback: 'style-loader',
           use: ['css-loader', 'less-loader']
         })
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       }
     ]
   },

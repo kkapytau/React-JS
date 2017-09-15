@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SearchResult from './SearchResult';
 import SearchForm from './SearchForm';
 import SearchFilters from './SearchFilters';
@@ -20,5 +21,5 @@ SearchBar.defaultProps = {
 };
 
 SearchBar.propTypes = {
-  result: React.PropTypes.string
+  result: PropTypes.string
 };
