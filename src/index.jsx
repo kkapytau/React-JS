@@ -1,12 +1,16 @@
 import React from 'react';
 import { AppContainer } from 'react-hot-loader';
 import ReactDom from 'react-dom';
-import HellowWorld from './components/HellowWorld';
+import SearchBar from './components/search/SearchBar';
+import Movies from './components/results/Movies';
 
 function render() {
   return ReactDom.render(
     <AppContainer>
-      <HellowWorld />
+      <div>
+        <SearchBar result="7 movies found" />
+        <Movies />
+      </div>
     </AppContainer>,
     document.getElementById('app')
   );
@@ -15,5 +19,5 @@ function render() {
 render();
 
 if (module.hot) {
-  module.hot.accept('./components/HellowWorld', render);
+  module.hot.accept('./index', render);
 }

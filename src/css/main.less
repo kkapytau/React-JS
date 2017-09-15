@@ -1,5 +1,202 @@
+@white: #ffffff;
 @muddyPink: #d9534f;
 
-.greet{
-	color: @muddyPink;
+
+.blocksPosition(){
+	min-width: 960px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.blackText(){
+	font-size: 20px;
+	color: black;
+	font-weight: 600;
+}
+
+.buttonsSize(){
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.search-bar{
+	background-image: url('https://1.bp.blogspot.com/-rlZpu-YwJYc/V2KUiC-JbKI/AAAAAAAAAJo/sZ8Yz5fNA-Ig00kla7NAlpxPbmt1r9H4ACLcB/s1600/300715.jpg');
+	background-repeat: no-repeat;
+	background-position: 50%;
+	.blocksPosition();
+	opacity: 0.95;
+	margin: 50px auto;
+
+	form{
+		padding: 100px 200px 50px 150px;
+	}
+
+	label{
+		display: block;
+		color: @white;
+		text-transform: uppercase;
+		font-size: 20px;
+	}
+
+	.search-section{
+		position: relative;
+
+		input[type=text]{
+			width: 100%;
+			height: 40px;
+			border-width: inherit;
+			background-color: black;
+			border-bottom: 3px solid @muddyPink;
+			color: @white;
+			font-size: 21px;
+			padding-left: 30px;
+		}
+
+		#arrow{
+			position: absolute;
+			color: grey;
+			right: 15px;
+			bottom: -5px;
+			font-size: 30px;
+		}
+
+	}
+
+	.bottom-section{
+		padding-top: 15px;
+	}
+
+	.search-filters{
+		color: @white;
+		display: inline-block;
+
+		span, button{
+			.buttonsSize();
+			margin-right: 10px;
+		}
+	}
+
+	.form-submit{
+		color: @white;
+		display: inline-block;
+		float: right;
+
+		button{
+			.buttonsSize();
+		}
+	}
+
+	.movie-panel{
+		height: 50px;
+		background-color: #f0f0f0;
+		padding: 12px 200px 12px 150px;
+
+		#results{
+			.blackText();
+		}
+
+		ul{
+			list-style: none outside none;
+			display: inline;
+			float: right;
+			.blackText();
+			li{
+				float: left;
+				padding-right: 20px;
+				&.selected{
+					color: @muddyPink;
+				}
+			}
+		}
+	}
+}
+
+.movies{
+	.blocksPosition();
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0 50px;
+
+	figure{
+		margin: 30px;
+		cursor:pointer;
+
+		figcaption{
+			margin: 5px;
+			.title{
+				.blackText();
+			}
+			.date{
+				float: right;
+				border: 1px solid grey;
+				padding: 0 5px;
+				border-radius: 4px;
+			}
+			.category{
+				display: block;
+				color: grey;
+			}
+		}
+	}
+}
+
+#myModal{
+	.modal-body{
+		background-image: url('http://hddesktopwallpapers.in/wp-content/uploads/2015/11/best-gaming-wallpaper-680x425.jpg');
+		background-position: 9%;
+		padding: 15px 40px 50px 60px;
+		width: 1200px;
+
+		.return-button{
+			margin-bottom: 60px;
+			button{
+				.buttonsSize();
+				color: @muddyPink;
+				position: absolute;
+				right: 50px;
+			}
+		}
+		summary{
+			display: flex;
+			.description{
+				margin-left: 70px;
+				h2{
+					color: @muddyPink;
+					font-weight: 600;
+					font-size: 40px;
+					display: inline-block;
+				}
+
+				.circle {
+					border-radius: 50%;
+					padding: 5px;
+					color: lightgreen;
+					border: 2px solid;
+					font-size: 20px;
+					display: inline-block;
+					margin-left: 15px;
+				}
+
+				p{
+					color: @white;
+					font-size: 20px;
+
+					&.date-time{
+						font-weight: 600;
+						span{
+							margin-right: 50px;
+						}
+					}
+
+					&.summary{
+						margin: 30px 0;
+					}
+
+					&.director-cast{
+						font-size: 13px;
+					}
+				}
+			}
+		}
+	}
 }
