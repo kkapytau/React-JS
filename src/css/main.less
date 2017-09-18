@@ -1,6 +1,93 @@
 @white: #ffffff;
 @muddyPink: #d9534f;
 
+@media only screen and (max-width: 640px) {
+
+	section.search-bar{
+		min-width: 0;
+		margin: 0;
+
+		form{
+			padding: 25px;
+		}
+
+		.form-submit{
+			position: absolute;
+			right: 25px;
+			top: 20%;
+		}
+
+		.movie-panel{
+			padding: 0 25px;
+			height: 100%;
+
+			#results{
+				display: inline-block;
+				margin-bottom: 10px;
+			}
+
+			ul{
+				float: none;
+
+				li{
+					float: none;
+				}
+			}
+		}
+
+		.search-filters{
+			display: flex;
+			flex-flow: column;
+			width: 50%;
+
+			button{
+				margin: 5px 0;
+			}
+		}
+	}
+
+	section.movies {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		padding: 0;
+		min-width: 0;
+
+		figure{
+			margin: 15px;
+			img{
+				width: 100%;
+			}
+		}
+
+		figcaption{
+
+			.date{
+				margin-right: 5px;
+			}
+		}
+	}
+
+	div.myModal .modal-body{
+
+		width: initial;
+		padding: 15px;
+
+		summary{
+			flex-direction: column;
+
+			img{
+				max-width: 100%;
+			}
+
+			.description{
+				margin: 0;
+			}
+		}
+	}
+
+}
+
+
 
 .blocksPosition(){
 	min-width: 960px;
@@ -80,6 +167,7 @@
 		color: @white;
 		display: inline-block;
 		float: right;
+		position: relative;
 
 		button{
 			.buttonsSize();
@@ -200,3 +288,5 @@
 		}
 	}
 }
+
+

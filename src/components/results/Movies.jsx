@@ -66,12 +66,7 @@ const moviesData = [
 ];
 
 export default function Movies() {
-  const resultArray = moviesData.map((data) => {
-    return (
-      <div>
-        <Movie key={data.unit} movie={data} />
-        <Modal movie={data} />
-      </div>);
-  });
+  const resultArray = moviesData.map(data =>
+    <div><Movie key={data.unit} movie={data} /><Modal movie={data} /></div>);
   return <section className="movies">{resultArray}</section>;
 }
