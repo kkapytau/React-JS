@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 export default function SearchForm() {
   return (
@@ -16,7 +16,7 @@ export default function SearchForm() {
           <button className="btn" type="button">Director</button>
         </div>
         <div className="form-submit">
-          <button className="btn btn-danger" type="submit">Search</button>
+          <Link className="btn btn-danger" to="/search/Some Name">Search</Link>
         </div>
       </fieldset>
     </form>

@@ -17,8 +17,9 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'built'),
-    filename: '[name].js'
+    path: path.join(__dirname, './built'),
+    filename: '[name].js',
+    publicPath: '/'
   },
 
   devtool: 'eval',

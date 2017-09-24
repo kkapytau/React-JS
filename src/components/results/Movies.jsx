@@ -65,8 +65,16 @@ const moviesData = [
   }
 ];
 
+/*
+export default function Movies(props) {
+  const resultArray = (props.moviesData.length) ? props.moviesData.map(data =>
+    <div><Movie key={data.unit} movie={data} /><Modal movie={data} /></div>) : <dvi className="no-films">No film found</dvi>;
+  return <section className="movies">{resultArray}</section>;
+}
+*/
+
 export default function Movies() {
-  const resultArray = moviesData.map(data =>
-    <div><Movie key={data.unit} movie={data} /><Modal movie={data} /></div>);
+  const resultArray = moviesData.map(data => (
+    <div><Movie key={data.unit} movie={data} /><Modal movie={data} /></div>));
   return <section className="movies">{resultArray}</section>;
 }
