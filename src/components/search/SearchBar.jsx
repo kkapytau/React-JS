@@ -7,7 +7,7 @@ import SearchFilters from './SearchFilters';
 export default function SearchBar(props) {
   return (
     <section className="search-bar">
-      <SearchForm searchHandler={props.searchHandler} />
+      <SearchForm />
       <section className="movie-panel">
         <SearchResult result={props.result} />
         <SearchFilters />

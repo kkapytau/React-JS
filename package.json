@@ -1,5 +1,5 @@
 {
-  "name": "Task2",
+  "name": "Task3",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -13,21 +13,21 @@
   "devDependencies": {
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
-    "babel-loader": "7.1.2",
-    "babel-preset-es2015": "6.24.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "css-loader": "0.28.7",
-    "eslint": "^4.6.1",
-    "eslint-config-airbnb": "15.1.0",
-    "eslint-import-resolver-webpack": "0.8.3",
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
     "extract-text-webpack-plugin": "3.0.0",
-    "html-webpack-plugin": "2.30.1",
+    "html-webpack-plugin": "^2.30.1",
     "jest": "^21.0.2",
     "less": "2.7.2",
     "less-loader": "4.0.5",
@@ -38,9 +38,9 @@
     "webpack-hot-middleware": "^2.19.1"
   },
   "dependencies": {
+    "babel-preset-env": "^1.6.0",
     "bootstrap": "^3.3.7",
     "express": "^4.15.4",
-    "nan": "^2.7.0",
     "prop-types": "^15.5.10",
     "react": "15.6.1",
     "react-bootstrap": "^0.31.3",
@@ -48,7 +48,10 @@
     "react-hot-loader": "3.0.0-beta.7",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-form": "^7.0.4"
+    "redux-form": "^7.0.4",
+    "url-search-params": "^0.10.0",
+    "url-search-params-polyfill": "^2.0.1"
   }
 }

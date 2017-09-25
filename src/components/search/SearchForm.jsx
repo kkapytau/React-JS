@@ -1,12 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-export default function SearchForm() {
+function SearchForm(props) {
+  let textInput = null;
+
+  function submitHandler(e) {
+    e.preventDefault();
+    props.history.push(`/search/${textInput.value}`);
+  }
+
   return (
     <form>
       <fieldset className="search-section">
         <label htmlFor="movie-search">Find your movie</label>
-        <input id="movie-search" type="text" />
+        <input id="movie-search" type="text" ref={(input) => { textInput = input; }} />
         <span id="arrow">⤶</span>
       </fieldset>
       <fieldset className="bottom-section">
@@ -16,9 +23,11 @@ export default function SearchForm() {
           <button className="btn" type="button">Director</button>
         </div>
         <div className="form-submit">
-          <Link className="btn btn-danger" to="/search/Some Name">Search</Link>
+          <button className="btn btn-danger" onClick={submitHandler} type="submit">Search</button>
         </div>
       </fieldset>
     </form>
   );
 }
+
+export default withRouter(SearchForm);

@@ -199,18 +199,17 @@
 	}
 }
 
-.no-films{
-	margin: 0 auto;
-	font-size: 50px;
-	color: grey;
-	.blocksPosition();
-}
-
 .movies{
 	.blocksPosition();
 	display: flex;
 	flex-wrap: wrap;
 	padding: 0 50px;
+
+	.no-films{
+		margin: 0 auto;
+		font-size: 50px;
+		color: grey;
+	}
 
 	figure{
 		margin: 30px;
@@ -235,65 +234,64 @@
 	}
 }
 
-.myModal{
-	.modal-body{
-		background-image: url('http://hddesktopwallpapers.in/wp-content/uploads/2015/11/best-gaming-wallpaper-680x425.jpg');
-		background-position: 9%;
-		padding: 15px 40px 50px 60px;
-		width: 1200px;
 
-		.return-button{
-			margin-bottom: 60px;
-			button{
-				.buttonsSize();
-				color: @muddyPink;
-				position: absolute;
-				right: 50px;
-			}
+.info{
+	.blocksPosition();
+	background-image: url('http://hddesktopwallpapers.in/wp-content/uploads/2015/11/best-gaming-wallpaper-680x425.jpg');
+	background-position: 9%;
+	width: 1200px;
+
+	.return-button{
+		float: right;
+		margin: 20px 100px 0 0;
+		button{
+			.buttonsSize();
+			color: @muddyPink;
 		}
-		summary{
-			display: flex;
-			.description{
-				margin-left: 70px;
-				h2{
-					color: @muddyPink;
+	}
+	summary{
+		display: flex;
+		.description{
+			margin-left: 70px;
+			h2{
+				color: @muddyPink;
+				font-weight: 600;
+				font-size: 40px;
+				display: inline-block;
+			}
+
+			.circle {
+				border-radius: 50%;
+				padding: 5px;
+				color: lightgreen;
+				border: 2px solid;
+				font-size: 20px;
+				display: inline-block;
+				margin-left: 15px;
+			}
+
+			p{
+				color: @white;
+				font-size: 20px;
+
+				&.date-time{
 					font-weight: 600;
-					font-size: 40px;
-					display: inline-block;
+					span{
+						margin-right: 50px;
+					}
 				}
 
-				.circle {
-					border-radius: 50%;
-					padding: 5px;
-					color: lightgreen;
-					border: 2px solid;
-					font-size: 20px;
-					display: inline-block;
-					margin-left: 15px;
+				&.summary{
+					margin: 30px 0;
 				}
 
-				p{
-					color: @white;
-					font-size: 20px;
-
-					&.date-time{
-						font-weight: 600;
-						span{
-							margin-right: 50px;
-						}
-					}
-
-					&.summary{
-						margin: 30px 0;
-					}
-
-					&.director-cast{
-						font-size: 13px;
-					}
+				&.director-cast{
+					font-size: 13px;
 				}
 			}
 		}
 	}
 }
+
 
 
