@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
+import PropTypes from 'prop-types';
 import SearchBar from '../search/SearchBar';
 import Movies from '../movies/Movies';
 import MovieInfo from '../movies/MovieInfo';
@@ -20,3 +21,11 @@ export default function App(props) {
     </div>
   );
 }
+
+App.defaultProps = {
+  children: null
+};
+
+App.propTypes = {
+  children: PropTypes.node
+};

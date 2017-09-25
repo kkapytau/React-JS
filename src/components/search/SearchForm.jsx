@@ -1,8 +1,9 @@
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { withRouter } from 'react-router-dom';
 
 function SearchForm(props) {
-  let textInput = null;
+  let textInput = '';
 
   function submitHandler(e) {
     e.preventDefault();
@@ -31,3 +32,11 @@ function SearchForm(props) {
 }
 
 export default withRouter(SearchForm);
+
+SearchForm.defaultProps = {
+  history: null
+};
+
+SearchForm.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired
+};

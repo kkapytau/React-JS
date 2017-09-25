@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 function Movie(props) {
-  function infoHandler() {
-    props.history.push(`/film/${props.movie.title}?id=${props.movie.unit}`);
-  }
   return (
-    <figure onClick={infoHandler}>
-      <img src={props.movie.poster} alt={props.movie.title} />
-      <figcaption>
-        <span className="title">{props.movie.title}</span>
-        <span className="date">{props.movie.date}</span>
-        <span className="category">{props.movie.category}</span>
-      </figcaption>
-    </figure>
+    <Link to={`/film/${props.movie.title}?id=${props.movie.unit}`}>
+      <figure>
+        <img src={props.movie.poster} alt={props.movie.title} />
+        <figcaption>
+          <span className="title">{props.movie.title}</span>
+          <span className="date">{props.movie.date}</span>
+          <span className="category">{props.movie.category}</span>
+        </figcaption>
+      </figure>
+    </Link>
   );
 }
 

@@ -28,31 +28,13 @@ export default function MovieInfo(props) {
 }
 
 MovieInfo.defaultProps = {
-  movie: {
-    poster: 'Unknown',
-    title: 'Unknown',
-    date: 'Unknown',
-    category: 'Unknown',
-    rating: 'Unknown',
-    runtime: 'Unknown',
-    summary: 'Unknown',
-    director: 'Unknown',
-    show_cast: 'Unknown',
-    unit: -1
+  location: {
+    search: ''
   }
 };
 
 MovieInfo.propTypes = {
-  movie: PropTypes.shape({
-    poster: PropTypes.string,
-    title: PropTypes.string,
-    date: PropTypes.string,
-    category: PropTypes.string,
-    rating: PropTypes.string,
-    runtime: PropTypes.string,
-    summary: PropTypes.string,
-    director: PropTypes.string,
-    show_cast: PropTypes.string,
-    unit: PropTypes.number
+  location: PropTypes.shape({
+    search: PropTypes.string.isRequired
   })
 };

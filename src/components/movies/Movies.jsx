@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Movie from './Movie';
 import MovieAPI from './MovieAPI';
 
@@ -11,3 +12,19 @@ export default function Movies(props) {
       {tmpResult}
     </section>);
 }
+
+Movies.defaultProps = {
+  match: {
+    params: {
+      query: ''
+    }
+  }
+};
+
+Movies.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      query: PropTypes.string
+    })
+  })
+};
