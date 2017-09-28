@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Movie(props) {
+export default function Movie(props) {
   return (
     <Link to={`/film/${props.movie.title}?id=${props.movie.unit}`}>
       <figure>
@@ -16,8 +16,6 @@ function Movie(props) {
     </Link>
   );
 }
-
-export default withRouter(Movie);
 
 Movie.defaultProps = {
   movie: {

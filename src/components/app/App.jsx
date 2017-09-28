@@ -1,11 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 import SearchBar from '../search/SearchBar';
 import Movies from '../movies/Movies';
-import MovieInfo from '../movies/MovieInfo';
-import NotFound from '../NotFound';
-
 
 export default function App(props) {
   return (
@@ -13,9 +10,9 @@ export default function App(props) {
       <SearchBar result="7 movies found" />
       <Switch>
         <Route exact path="/" component={Movies} />
+        <Route exact path="/search" component={Movies} />
         <Route path="/search/:query" component={Movies} />
-        <Route path="/film/:name" component={MovieInfo} />
-        <Route path="*" component={NotFound} />
+
       </Switch>
       {props.children}
     </div>

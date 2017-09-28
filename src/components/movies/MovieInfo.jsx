@@ -5,12 +5,15 @@ import MovieAPI from './MovieAPI';
 
 
 export default function MovieInfo(props) {
+  function goBack() {
+    props.history.goBack();
+  }
   const params = new URLSearchParams(props.location.search);
   const movie = MovieAPI.getMovie(parseInt(params.get('id'), 10))[0];
   return (
     <div className="info">
       <div className="return-button">
-        <button className="btn btn-default" type="submit">Search</button>
+        <button className="btn btn-default" onClick={goBack} type="button">Search</button>
       </div>
       <summary>
         <img src={movie.poster} alt={movie.title} />
@@ -30,11 +33,17 @@ export default function MovieInfo(props) {
 MovieInfo.defaultProps = {
   location: {
     search: ''
+  },
+  history: {
+    goBack: null
   }
 };
 
 MovieInfo.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string.isRequired
+  }),
+  history: PropTypes.shape({
+    goBack: PropTypes.func
   })
 };
