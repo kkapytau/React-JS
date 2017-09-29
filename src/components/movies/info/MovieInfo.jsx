@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'url-search-params-polyfill';
-import MovieAPI from './MovieAPI';
-
+import MovieAPI from '../MovieAPI';
+import './movieInfo.scss';
 
 export default function MovieInfo(props) {
   function goBack() {

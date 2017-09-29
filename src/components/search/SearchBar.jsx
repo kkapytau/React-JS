@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SearchResult from './SearchResult';
 import SearchForm from './SearchForm';
 import SearchFilters from './SearchFilters';
+import './searchBar.scss';
 
 export default function SearchBar(props) {
   return (

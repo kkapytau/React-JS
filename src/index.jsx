@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/app/App';
 import NotFound from './components/NotFound';
-import MovieInfo from './components/movies/MovieInfo';
+import MovieInfo from './components/movies/info/MovieInfo';
 
 function render() {
   return ReactDom.render(

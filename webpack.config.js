@@ -8,12 +8,11 @@ module.exports = {
   context: path.join(__dirname, 'src'),
 
   entry: {
-    task2: [
+    searchMovie: [
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8081',
       './index.jsx'
-    ],
-    styles: './css/main.less'
+    ]
   },
 
   output: {
@@ -23,12 +22,6 @@ module.exports = {
   },
 
   devtool: 'eval',
-
-  /*
-  eslint: {
-    configFile: path.join(__dirname, 'eslint-config.json'),
-  },
-  */
 
   resolve: {
     extensions: ['.js', '.jsx']
@@ -54,9 +47,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader'
-        ]
+        use: ['babel-loader']
       },
       {
         test: /\.less$/,
@@ -68,6 +59,13 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader?url=false&minimize=true', 'sass-loader']
+        })
       }
     ]
   },

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Movie from './Movie';
 import MovieAPI from './MovieAPI';
+import './movies.scss';
 
 export default function Movies(props) {
   const resultArray = MovieAPI.getMovies().map(data => (
