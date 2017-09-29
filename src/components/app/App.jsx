@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
-import SearchBar from '../search/SearchBar';
-import Movies from '../movies/Movies';
+import SearchBar from '../search/bar/SearchBar';
+import Movies from '../movies/list/Movies';
 
 export default function App(props) {
   return (

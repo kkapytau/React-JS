@@ -19,7 +19,7 @@ export default function MovieInfo(props) {
         <img src={movie.poster} alt={movie.title} />
         <div className="description">
           <h2>{movie.title}</h2> <span className="circle">{movie.rating}</span>
-          <p> {movie.category}</p>
+          <p className="category"> {movie.category}</p>
           <p className="date-time"><span>{movie.date}</span> <span>{movie.runtime}</span></p>
           <p className="summary">{movie.summary}</p>
           <p className="director-cast">Director: {movie.director}</p>

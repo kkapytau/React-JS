@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchResult from './SearchResult';
-import SearchForm from './SearchForm';
-import SearchFilters from './SearchFilters';
+import SearchResult from '../results/SearchResult';
+import SearchForm from '../form/SearchForm';
+import SearchFilters from '../filters/SearchFilters';
 import './searchBar.scss';
 
 export default function SearchBar(props) {
