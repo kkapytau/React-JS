@@ -1,11 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as movieActions from '../..//movies/MovieAPI';
 import './styles.scss';
+import store from '../../../store/Store';
+import getFilterData from '../../../actions/FilterActions';
 
-export default class SearchForm extends React.PureComponent {
+class SearchForm extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = {
+      value: '',
+      toggle: true
+    };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    store.dispatch(getFilterData((!nextState.toggle) ? 'director' : 'title'));
+  }
+
+  filterHandle(toggle) {
+    this.setState({ toggle });
+  }
+
+  submitHandler(event) {
+    event.preventDefault();
+    const { getMovies } = this.props.movieActions;
+    getMovies({ [store.getState().filtersState.filterName]: this.state.value });
+    this.props.history.push(`/search/${this.state.value}`);
   }
 
   handleChange(event) {
@@ -14,7 +38,7 @@ export default class SearchForm extends React.PureComponent {
 
   render() {
     return (
-      <form>
+      <form onSubmit={e => this.submitHandler(e)}>
         <fieldset className="search-section">
           <label htmlFor="movie-search">Find your movie</label>
           <input id="movie-search" type="text" value={this.state.value} onChange={e => this.handleChange(e)} />
@@ -23,14 +47,40 @@ export default class SearchForm extends React.PureComponent {
         <fieldset className="bottom-section">
           <div className="search-filters">
             <span>Search By</span>
-            <button className="btn btn-danger" type="button">Title</button>
-            <button className="btn" type="button">Director</button>
+            <button className={this.state.toggle ? 'btn btn-danger' : 'btn'} onClick={() => this.filterHandle(true)} type="button">Title</button>
+            <button className={(!this.state.toggle) ? 'btn btn-danger' : 'btn'} onClick={() => this.filterHandle(false)} type="button">Director</button>
           </div>
           <div className="form-submit">
-            <Link className="btn btn-danger" to={`/search/${this.state.value}`}>Search</Link>
+            <button type="submit" className="btn btn-danger">Search</button>
           </div>
         </fieldset>
       </form>
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    movieActions: bindActionCreators(movieActions, dispatch)
+  };
+}
+
+SearchForm.defaultProps = {
+  movieActions: {
+    getMovies: null
+  },
+  history: {
+    push: null
+  }
+};
+
+SearchForm.propTypes = {
+  movieActions: PropTypes.shape({
+    getMovies: PropTypes.func
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
+};
+
+export default withRouter(connect(null, mapDispatchToProps)(SearchForm));

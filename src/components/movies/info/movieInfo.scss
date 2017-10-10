@@ -1,0 +1,94 @@
+@import '../../../commonCss/common';
+
+@media only screen and (max-width: 640px) {
+  div.info {
+    width: auto;
+    min-width: 0;
+    padding: 15px;
+
+    .return-button{
+      float: none;
+      margin: 0 0 20px 32%;
+    }
+
+    summary {
+      flex-direction: column;
+
+      img {
+        max-width: 100%;
+      }
+
+      .description {
+        margin: 0;
+        h2, span{
+          float:left;
+          max-width: 230px;
+        }
+        .circle{
+          margin: 20px 0 0 15px;
+        }
+        .category{
+          clear:both;
+        }
+      }
+    }
+  }
+}
+
+.info{
+  @include blocksPosition();
+  background-image: url('http://hddesktopwallpapers.in/wp-content/uploads/2015/11/best-gaming-wallpaper-680x425.jpg');
+  background-position: 9%;
+  width: 1200px;
+
+  .return-button{
+    float: right;
+    margin: 20px 100px 0 0;
+    button{
+      @include buttonsSize();
+      color: $muddyPink;
+    }
+  }
+  summary{
+    display: flex;
+    .description{
+      margin-left: 70px;
+      h2{
+        color: $muddyPink;
+        font-weight: 600;
+        font-size: 40px;
+        display: inline-block;
+      }
+
+      .circle {
+        border-radius: 50%;
+        padding: 5px;
+        color: lightgreen;
+        border: 2px solid;
+        font-size: 20px;
+        display: inline-block;
+        margin-left: 15px;
+      }
+
+      p{
+        color: $white;
+        font-size: 20px;
+
+        &.date-time{
+          font-weight: 600;
+          span{
+            margin-right: 50px;
+          }
+        }
+
+        &.summary{
+          margin: 30px 0;
+        }
+
+        &.director-cast{
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

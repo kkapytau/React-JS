@@ -1,0 +1,39 @@
+@import '../../../commonCss/common';
+
+@media only screen and (max-width: 640px) {
+
+  section.search-bar {
+    min-width: 0;
+    margin: 0;
+
+    form {
+      padding: 25px;
+    }
+
+    .movie-panel {
+      padding: 0 25px;
+      height: 100%;
+    }
+
+
+  }
+}
+
+.search-bar{
+  background-image: url('https://1.bp.blogspot.com/-rlZpu-YwJYc/V2KUiC-JbKI/AAAAAAAAAJo/sZ8Yz5fNA-Ig00kla7NAlpxPbmt1r9H4ACLcB/s1600/300715.jpg');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  @include blocksPosition();
+  opacity: 0.95;
+  margin: 50px auto;
+
+  form{
+    padding: 100px 200px 50px 150px;
+  }
+
+  .movie-panel{
+    height: 50px;
+    background-color: #f0f0f0;
+    padding: 12px 200px 12px 150px;
+  }
+}

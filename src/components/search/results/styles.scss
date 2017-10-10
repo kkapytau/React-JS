@@ -1,0 +1,12 @@
+@import '../../../commonCss/common';
+
+@media only screen and (max-width: 640px) {
+  #results{
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+
+#results{
+  @include blackText();
+}

@@ -7,12 +7,11 @@ import Movies from '../movies/list/Movies';
 export default function App(props) {
   return (
     <div>
-      <SearchBar result="7 movies found" />
+      <SearchBar />
       <Switch>
         <Route exact path="/" component={Movies} />
         <Route exact path="/search" component={Movies} />
         <Route path="/search/:query" component={Movies} />
-
       </Switch>
       {props.children}
     </div>

@@ -35,15 +35,14 @@ module.exports = {
 
   module: {
     rules: [
+
       {
         enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          eslintPath: path.join(__dirname, 'eslint-config.json')
-        }
+        loader: 'eslint-loader'
       },
+
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,

@@ -5,12 +5,12 @@ import './styles.scss';
 
 export default function Movie(props) {
   return (
-    <Link to={`/film/${props.movie.title}?id=${props.movie.unit}`}>
+    <Link to={`/film/${props.movie.show_title}?id=${props.movie.unit}`}>
       <figure>
-        <img src={props.movie.poster} alt={props.movie.title} />
+        <img src={props.movie.poster} alt={props.movie.show_title} />
         <figcaption>
-          <span className="title">{props.movie.title}</span>
-          <span className="date">{props.movie.date}</span>
+          <span className="title">{props.movie.show_title}</span>
+          <span className="date">{props.movie.release_year}</span>
           <span className="category">{props.movie.category}</span>
         </figcaption>
       </figure>
@@ -21,8 +21,8 @@ export default function Movie(props) {
 Movie.defaultProps = {
   movie: {
     poster: 'Unknown',
-    title: 'Unknown',
-    date: 'Unknown',
+    show_title: 'Unknown',
+    release_year: 'Unknown',
     category: 'Unknown',
     unit: -1
   }
@@ -31,8 +31,8 @@ Movie.defaultProps = {
 Movie.propTypes = {
   movie: PropTypes.shape({
     poster: PropTypes.string,
-    title: PropTypes.string,
-    date: PropTypes.string,
+    show_title: PropTypes.string,
+    release_year: PropTypes.string,
     category: PropTypes.string,
     unit: PropTypes.number
   })
