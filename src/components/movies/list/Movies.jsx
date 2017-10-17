@@ -8,12 +8,12 @@ import './movies.scss';
 class Movies extends React.Component {
   componentDidMount() {
     const { getMovies } = this.props.movieActions;
-    getMovies({ [this.props.filter]: (this.props.match.params.query) ? this.props.match.params.query : '' });
+    getMovies({ searchType: this.props.filter, query: (this.props.match.params.query) ? this.props.match.params.query : '' });
   }
 
   render() {
     const tmpResult = (this.props.movies.length) ? this.props.movies.map(data => (
-      <Movie key={data.unit} movie={data} />)) : <div className="no-films">No Films Found</div>;
+      <Movie key={data.id} movie={data} />)) : <div className="no-films">No Films Found</div>;
     return (
       <section className="movies">
         {tmpResult}

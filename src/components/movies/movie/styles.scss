@@ -4,20 +4,22 @@ figure{
   margin: 30px;
   cursor:pointer;
 
+  img{
+    max-width: 300px;
+  }
+
   figcaption{
     margin: 5px;
     .title{
       @include blackText();
+      max-width: 150px;
+      display: inline-block;
     }
     .date{
       float: right;
       border: 1px solid grey;
       padding: 0 5px;
       border-radius: 4px;
-    }
-    .category{
-      display: block;
-      color: grey;
     }
   }
 }

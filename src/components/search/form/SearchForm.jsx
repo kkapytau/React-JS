@@ -18,7 +18,7 @@ class SearchForm extends React.PureComponent {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    store.dispatch(getFilterData((!nextState.toggle) ? 'director' : 'title'));
+    store.dispatch(getFilterData((!nextState.toggle) ? 'person' : 'movie'));
   }
 
   filterHandle(toggle) {
@@ -28,7 +28,7 @@ class SearchForm extends React.PureComponent {
   submitHandler(event) {
     event.preventDefault();
     const { getMovies } = this.props.movieActions;
-    getMovies({ [store.getState().filtersState.filterName]: this.state.value });
+    getMovies({ searchType: store.getState().filtersState.filterName, query: this.state.value });
     this.props.history.push(`/search/${this.state.value}`);
   }
 

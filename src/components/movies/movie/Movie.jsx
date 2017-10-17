@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { POSTER_PATH } from '../../../constants/Constants';
 import './styles.scss';
 
 export default function Movie(props) {
   return (
-    <Link to={`/film/${props.movie.show_title}?id=${props.movie.unit}`}>
+    <Link to={`/film/${props.movie.original_title}?id=${props.movie.id}`}>
       <figure>
-        <img src={props.movie.poster} alt={props.movie.show_title} />
+        <img src={`${POSTER_PATH}${props.movie.poster_path}`} alt={props.movie.original_title} />
         <figcaption>
-          <span className="title">{props.movie.show_title}</span>
-          <span className="date">{props.movie.release_year}</span>
-          <span className="category">{props.movie.category}</span>
+          <span className="title">{props.movie.original_title}</span>
+          <span className="date">{props.movie.release_date}</span>
         </figcaption>
       </figure>
     </Link>
@@ -20,20 +20,18 @@ export default function Movie(props) {
 
 Movie.defaultProps = {
   movie: {
-    poster: 'Unknown',
-    show_title: 'Unknown',
-    release_year: 'Unknown',
-    category: 'Unknown',
-    unit: -1
+    poster_path: 'Unknown',
+    original_title: 'Unknown',
+    release_date: 'Unknown',
+    id: -1
   }
 };
 
 Movie.propTypes = {
   movie: PropTypes.shape({
-    poster: PropTypes.string,
-    show_title: PropTypes.string,
-    release_year: PropTypes.string,
-    category: PropTypes.string,
-    unit: PropTypes.number
+    poster_path: PropTypes.string,
+    original_title: PropTypes.string,
+    release_date: PropTypes.string,
+    id: PropTypes.number
   })
 };

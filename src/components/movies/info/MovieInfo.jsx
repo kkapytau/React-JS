@@ -6,6 +6,7 @@ import 'url-search-params-polyfill';
 import * as movieActions from '../MovieAPI';
 import './movieInfo.scss';
 import store from '../../../store/Store';
+import { POSTER_PATH } from '../../../constants/Constants';
 
 function MovieInfo(props) {
   function goBack() {
@@ -22,14 +23,11 @@ function MovieInfo(props) {
         <button className="btn btn-default" onClick={goBack} type="button">Search</button>
       </div>
       <summary>
-        <img src={movie.poster} alt={movie.title} />
+        <img src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.original_title} />
         <div className="description">
-          <h2>{movie.title}</h2> <span className="circle">{movie.rating}</span>
-          <p className="category"> {movie.category}</p>
-          <p className="date-time"><span>{movie.date}</span> <span>{movie.runtime}</span></p>
-          <p className="summary">{movie.summary}</p>
-          <p className="director-cast">Director: {movie.director}</p>
-          <p className="director-cast">Cast: {movie.show_cast}</p>
+          <h2>{movie.original_title}</h2> <span className="circle">{movie.vote_average}</span>
+          <p className="date-time"><span>{movie.release_date}</span></p>
+          <p className="summary">{movie.overview}</p>
         </div>
       </summary>
     </div>

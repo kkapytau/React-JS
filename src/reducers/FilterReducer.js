@@ -1,7 +1,7 @@
 import { GET_FILTER_DATA } from '../constants/Constants';
 
 const initialState = {
-  filterName: 'title'
+  filterName: 'movie'
 };
 
 export default function filterReducer(state = initialState, action) {
