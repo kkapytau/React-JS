@@ -11,7 +11,7 @@ export default function App(props) {
       <Switch>
         <Route exact path="/" component={Movies} />
         <Route exact path="/search" component={Movies} />
-        <Route path="/search/:query" component={Movies} />
+        <Route path="/search/:query&:filter" component={Movies} />
       </Switch>
       {props.children}
     </div>

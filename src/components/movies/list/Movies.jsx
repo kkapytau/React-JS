@@ -8,7 +8,7 @@ import './movies.scss';
 class Movies extends React.Component {
   componentDidMount() {
     const { getMovies } = this.props.movieActions;
-    getMovies({ searchType: this.props.filter, query: (this.props.match.params.query) ? this.props.match.params.query : '' });
+    getMovies({ searchType: this.props.match.params.filter, query: (this.props.match.params.query) ? this.props.match.params.query : '' });
   }
 
   render() {
@@ -24,8 +24,7 @@ class Movies extends React.Component {
 
 const mapStateToProps = function (store) {
   return {
-    movies: store.moviesState.movies,
-    filter: store.filtersState.filterName
+    movies: store.moviesState.movies
   };
 };
 
@@ -39,7 +38,8 @@ Movies.defaultProps = {
   movies: [],
   match: {
     params: {
-      query: ''
+      query: '',
+      filter: ''
     }
   },
   movieActions: {
@@ -51,7 +51,8 @@ Movies.defaultProps = {
 Movies.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      query: PropTypes.string
+      query: PropTypes.string,
+      filter: PropTypes.string
     })
   }),
   movieActions: PropTypes.shape({

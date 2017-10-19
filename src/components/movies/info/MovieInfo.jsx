@@ -1,22 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import 'url-search-params-polyfill';
-import * as movieActions from '../MovieAPI';
-import './movieInfo.scss';
-import store from '../../../store/Store';
 import { POSTER_PATH } from '../../../constants/Constants';
+import './movieInfo.scss';
 
 function MovieInfo(props) {
   function goBack() {
     props.history.goBack();
   }
-  const params = new URLSearchParams(props.location.search);
-  const { getMovie } = props.movieActions;
-  getMovie(parseInt(params.get('id'), 10));
-  // почему в пропсах нет мувисов, хотя они есть в сторе?
-  const movie = store.getState().moviesState.movie;
+  const movie = props.movie;
   return (
     <div className="info">
       <div className="return-button">
@@ -34,34 +27,26 @@ function MovieInfo(props) {
   );
 }
 
-function mapDispatchToProps(dispatch) {
+const mapStateToProps = function (store) {
   return {
-    movieActions: bindActionCreators(movieActions, dispatch)
+    movie: store.moviesState.movie
   };
-}
+};
 
 MovieInfo.defaultProps = {
-  location: {
-    search: ''
-  },
   history: {
     goBack: null
   },
-  movieActions: {
-    movieActions: null
-  }
+  movie: null
 };
 
 MovieInfo.propTypes = {
-  location: PropTypes.shape({
-    search: PropTypes.string.isRequired
-  }),
   history: PropTypes.shape({
     goBack: PropTypes.func
   }),
-  movieActions: PropTypes.shape({
+  movie: PropTypes.shape({
     movieActions: PropTypes.func
   })
 };
 
-export default connect(null, mapDispatchToProps)(MovieInfo);
+export default connect(mapStateToProps)(MovieInfo);

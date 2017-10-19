@@ -13,7 +13,6 @@ export function getMovies(params) {
       })
       .catch((error) => {
         console.log(error);
-        dispatch(getMoviesSuccess([]));
       });
   };
 }

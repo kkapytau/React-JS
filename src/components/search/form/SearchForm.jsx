@@ -8,28 +8,27 @@ import './styles.scss';
 import store from '../../../store/Store';
 import getFilterData from '../../../actions/FilterActions';
 
-class SearchForm extends React.PureComponent {
+class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      toggle: true
+      toggle: (store.getState().filtersState.filterName === 'movie')
     };
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    store.dispatch(getFilterData((!nextState.toggle) ? 'person' : 'movie'));
-  }
-
   filterHandle(toggle) {
-    this.setState({ toggle });
+    if (this.state.toggle !== toggle) {
+      this.setState({ toggle });
+      store.dispatch(getFilterData((toggle) ? 'movie' : 'person'));
+    }
   }
 
   submitHandler(event) {
     event.preventDefault();
     const { getMovies } = this.props.movieActions;
     getMovies({ searchType: store.getState().filtersState.filterName, query: this.state.value });
-    this.props.history.push(`/search/${this.state.value}`);
+    this.props.history.push(`/search/${this.state.value}&${(this.state.toggle) ? 'movie' : 'person'}`);
   }
 
   handleChange(event) {
@@ -41,7 +40,7 @@ class SearchForm extends React.PureComponent {
       <form onSubmit={e => this.submitHandler(e)}>
         <fieldset className="search-section">
           <label htmlFor="movie-search">Find your movie</label>
-          <input id="movie-search" type="text" value={this.state.value} onChange={e => this.handleChange(e)} />
+          <input id="movie-search" type="text" onChange={(e) => this.handleChange(e)} />
           <span id="arrow">⤶</span>
         </fieldset>
         <fieldset className="bottom-section">
