@@ -4,17 +4,16 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { POSTER_PATH } from '../../../constants/Constants';
-import * as movieActions from '../MovieAPI';
+import { getStaticMovie } from '../MovieAPI';
 import './styles.scss';
 
 function handler(props) {
-  const { getMovie } = props.movieActions;
-  getMovie(props.movie.id);
+  props.getStaticMovie(props.movie.id);
 }
 
 function Movie(props) {
   return (
-    <Link onClick={handler(props)} to={`/film/${props.movie.original_title}?id=${props.movie.id}`}>
+    <Link onClick={() => { handler(props); }} to={`/film/${props.movie.original_title}?id=${props.movie.id}`}>
       <figure>
         <img src={`${POSTER_PATH}${props.movie.poster_path}`} alt={props.movie.original_title} />
         <figcaption>
@@ -46,7 +45,7 @@ Movie.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    movieActions: bindActionCreators(movieActions, dispatch)
+    getStaticMovie: bindActionCreators(getStaticMovie, dispatch)
   };
 }
 

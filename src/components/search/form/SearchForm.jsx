@@ -40,7 +40,7 @@ class SearchForm extends React.Component {
       <form onSubmit={e => this.submitHandler(e)}>
         <fieldset className="search-section">
           <label htmlFor="movie-search">Find your movie</label>
-          <input id="movie-search" type="text" onChange={(e) => this.handleChange(e)} />
+          <input id="movie-search" type="text" onChange={e => this.handleChange(e)} />
           <span id="arrow">⤶</span>
         </fieldset>
         <fieldset className="bottom-section">
