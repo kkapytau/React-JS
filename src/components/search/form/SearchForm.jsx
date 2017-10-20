@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as movieActions from '../..//movies/MovieAPI';
+import * as movieActions from '../../movies/MovieAPI';
 import './styles.scss';
 import store from '../../../store/Store';
 import getFilterData from '../../../actions/FilterActions';
