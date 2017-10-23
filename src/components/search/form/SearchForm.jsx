@@ -15,7 +15,6 @@ class SearchForm extends React.Component {
       value: '',
       toggle: true
     };
-    console.log(this.props)
   }
 
   filterHandle(toggle) {
