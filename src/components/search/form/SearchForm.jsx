@@ -6,15 +6,16 @@ import { connect } from 'react-redux';
 import * as movieActions from '../../movies/MovieAPI';
 import './styles.scss';
 import store from '../../../store/Store';
-import getFilterData from '../../../actions/FilterActions';
+import { getFilterData, getSearchText } from '../../../actions/FilterActions';
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      toggle: (store.getState().filtersState.filterName === 'movie')
+      toggle: true
     };
+    console.log(this.props)
   }
 
   filterHandle(toggle) {
@@ -27,7 +28,8 @@ class SearchForm extends React.Component {
   submitHandler(event) {
     event.preventDefault();
     const { getMovies } = this.props.movieActions;
-    getMovies({ searchType: store.getState().filtersState.filterName, query: this.state.value });
+    getMovies({ searchType: store.getState().filtersState.searchType, query: this.state.value });
+    store.dispatch(getSearchText(this.state.value));
     this.props.history.push(`/search/${this.state.value}&${(this.state.toggle) ? 'movie' : 'person'}`);
   }
 

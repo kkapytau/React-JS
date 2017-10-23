@@ -22,6 +22,25 @@ export function getStaticMovie(id) {
   };
 }
 
+export function getStaticMoviesData() {
+  return moviesData.length;
+}
+
+export function getSearchData(matchParams, search) {
+  let tmpSearchObj = {
+    searchType: matchParams.searchType,
+    query: (matchParams.query) ? matchParams.query : ''
+  };
+  if (!matchParams.searchType) {
+    const params = new URLSearchParams(search);
+    tmpSearchObj = {
+      searchType: params.get('searchType'),
+      query: params.get('query')
+    };
+  }
+  return tmpSearchObj;
+}
+
 export function getMovie(id) {
   return (dispatch) => {
     axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=813f19e9af5835eae0cc65011eff831b&language=en-US`)

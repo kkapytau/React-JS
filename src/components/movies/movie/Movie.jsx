@@ -12,8 +12,15 @@ function handler(props) {
 }
 
 function Movie(props) {
+  let urlData = props.filtersState;
+  if (!props.filtersState.searchText) {
+    urlData = props.search;
+  }
   return (
-    <Link onClick={() => { handler(props); }} to={`/film/${props.movie.original_title}?id=${props.movie.id}`}>
+    <Link
+      onClick={() => { handler(props); }}
+      to={`/film/${props.movie.original_title}?id=${props.movie.id}&searchType=${urlData.searchType}&query=${urlData.query}`}
+    >
       <figure>
         <img src={`${POSTER_PATH}${props.movie.poster_path}`} alt={props.movie.original_title} />
         <figcaption>
@@ -31,6 +38,14 @@ Movie.defaultProps = {
     original_title: 'Unknown',
     release_date: 'Unknown',
     id: -1
+  },
+  filtersState: {
+    filterName: '',
+    searchText: ''
+  },
+  search: {
+    query: '',
+    filter: ''
   }
 };
 
@@ -40,7 +55,21 @@ Movie.propTypes = {
     original_title: PropTypes.string,
     release_date: PropTypes.string,
     id: PropTypes.number
+  }),
+  filtersState: PropTypes.shape({
+    filterName: PropTypes.string,
+    searchText: PropTypes.string
+  }),
+  search: PropTypes.shape({
+    query: PropTypes.string,
+    filter: PropTypes.string
   })
+};
+
+const mapStateToProps = function (store) {
+  return {
+    filtersState: store.filtersState
+  };
 };
 
 function mapDispatchToProps(dispatch) {
@@ -49,4 +78,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(Movie);
+export default connect(mapStateToProps, mapDispatchToProps)(Movie);

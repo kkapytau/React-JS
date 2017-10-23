@@ -40,6 +40,7 @@
   background-image: url('http://hddesktopwallpapers.in/wp-content/uploads/2015/11/best-gaming-wallpaper-680x425.jpg');
   background-position: 9%;
   width: 1200px;
+  margin-top: 50px;
 
   .return-button{
     float: right;
@@ -51,8 +52,13 @@
   }
   summary{
     display: flex;
+    img{
+      max-width: 300px;
+      max-height: 300px;
+      margin-left: 35px;
+    }
     .description{
-      margin-left: 70px;
+      margin-left: 35px;
       h2{
         color: $muddyPink;
         font-weight: 600;

@@ -2,17 +2,20 @@ import React, { PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Movie from '../movie/Movie';
-import { getMovies } from '../MovieAPI';
+import { getMovies, getStaticMoviesData, getSearchData } from '../MovieAPI';
 import './movies.scss';
 
 class Movies extends React.Component {
   componentDidMount() {
-    this.props.getMovies({ searchType: this.props.match.params.filter, query: (this.props.match.params.query) ? this.props.match.params.query : '' });
+    if (!getStaticMoviesData()) {
+      this.props.getMovies(getSearchData(this.props.match.params, this.props.search));
+    }
   }
 
   render() {
+    const searchObj = getSearchData(this.props.match.params, this.props.search);
     const tmpResult = (this.props.movies.length) ? this.props.movies.map(data => (
-      <Movie key={data.id} movie={data} />)) : <div className="no-films">No Films Found</div>;
+      <Movie key={data.id} movie={data} search={searchObj} />)) : <div className="no-films">No Films Found</div>;
     return (
       <section className="movies">
         {tmpResult}
@@ -42,6 +45,7 @@ Movies.defaultProps = {
     }
   },
   getMovies: null,
+  search: '',
   filter: ''
 };
 
@@ -53,8 +57,8 @@ Movies.propTypes = {
     })
   }),
   getMovies: PropTypes.func,
-  filter: PropTypes.string,
-  movies: PropTypes.arrayOf(PropTypes.shape({}))
+  movies: PropTypes.arrayOf(PropTypes.shape({})),
+  search: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

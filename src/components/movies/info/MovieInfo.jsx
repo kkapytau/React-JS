@@ -2,34 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import 'url-search-params-polyfill';
 import { POSTER_PATH } from '../../../constants/Constants';
-import { getMovie } from '../MovieAPI';
+import { getMovie, getSearchData } from '../MovieAPI';
+import Movies from '../list/Movies';
 import './movieInfo.scss';
 
 class MovieInfo extends React.Component {
-  componentWillMount() {
-    const params = new URLSearchParams(this.props.location.search);
-    this.props.getMovie(params.get('id'));
+  componentDidMount() {
+    if (!this.props.movie) {
+      const params = new URLSearchParams(this.props.location.search);
+      this.props.getMovie(params.get('id'));
+    }
   }
-  goBack() {
-    this.props.history.goBack();
-  }
+
   render() {
+    const searchData = getSearchData(this.props.match.params, this.props.location.search);
     return (
       (this.props.movie) ?
-        <div className="info">
-          <div className="return-button">
-            <button className="btn btn-default" onClick={() => this.goBack()} type="button">Search</button>
-          </div>
-          <summary>
-            <img src={`${POSTER_PATH}${this.props.movie.poster_path}`} alt={this.props.movie.original_title} />
-            <div className="description">
-              <h2>{this.props.movie.original_title}</h2> <span className="circle">{this.props.movie.vote_average}</span>
-              <p className="date-time"><span>{this.props.movie.release_date}</span></p>
-              <p className="summary">{this.props.movie.overview}</p>
+        <div>
+          <div className="info">
+            <div className="return-button">
+              <Link className="btn btn-default" to={`/search/${searchData.query}&${searchData.searchType}`}>Search</Link>
             </div>
-          </summary>
+            <summary>
+              <img src={`${POSTER_PATH}${this.props.movie.poster_path}`} alt={this.props.movie.original_title} />
+              <div className="description">
+                <h2>{this.props.movie.original_title}</h2> <span className="circle">{this.props.movie.vote_average}</span>
+                <p className="date-time"><span>{this.props.movie.release_date}</span></p>
+                <p className="summary">{this.props.movie.overview}</p>
+              </div>
+            </summary>
+          </div>
+          <Movies search={this.props.location.search} />
         </div>
         : <div>No Data</div>
     );
@@ -49,31 +55,30 @@ function mapDispatchToProps(dispatch) {
 }
 
 MovieInfo.defaultProps = {
-  history: {
-    goBack: null
-  },
   location: {
     search: ''
   },
   getMovie: null,
-  movie: {
-    poster_path: 'Unknown',
-    original_title: 'Unknown',
-    release_date: 'Unknown',
-    id: -1,
-    overview: 'Unknown',
-    vote_average: 'Unknown'
+  movie: null,
+  match: {
+    params: {
+      query: '',
+      filter: ''
+    }
   }
 };
 
 MovieInfo.propTypes = {
-  history: PropTypes.shape({
-    goBack: PropTypes.func
-  }),
   location: PropTypes.shape({
     search: PropTypes.string.isRequired
   }),
   getMovie: PropTypes.func,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      query: PropTypes.string,
+      filter: PropTypes.string
+    })
+  }),
   movie: PropTypes.shape({
     poster_path: PropTypes.string,
     original_title: PropTypes.string,
