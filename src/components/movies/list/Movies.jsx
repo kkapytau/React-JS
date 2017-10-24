@@ -8,12 +8,14 @@ import './movies.scss';
 class Movies extends React.Component {
   componentDidMount() {
     if (!getStaticMoviesData()) {
-      this.props.getMovies(getSearchData(this.props.match.params, this.props.search));
+      this.props.getMovies(getSearchData(this.props.match.params,
+        (this.props.search) ? this.props.search : this.props.location.search));
     }
   }
 
   render() {
-    const searchObj = getSearchData(this.props.match.params, this.props.search);
+    const searchObj = getSearchData(this.props.match.params,
+      (this.props.search) ? this.props.search : this.props.location.search);
     const tmpResult = (this.props.movies.length) ? this.props.movies.map(data => (
       <Movie key={data.id} movie={data} search={searchObj} />)) : <div className="no-films">No Films Found</div>;
     return (
@@ -38,6 +40,9 @@ function mapDispatchToProps(dispatch) {
 
 Movies.defaultProps = {
   movies: [],
+  location: {
+    search: ''
+  },
   match: {
     params: {
       query: '',
@@ -55,6 +60,9 @@ Movies.propTypes = {
       query: PropTypes.string,
       filter: PropTypes.string
     })
+  }),
+  location: PropTypes.shape({
+    search: PropTypes.string.isRequired
   }),
   getMovies: PropTypes.func,
   movies: PropTypes.arrayOf(PropTypes.shape({})),

@@ -24,7 +24,7 @@ class MovieInfo extends React.Component {
         <div>
           <div className="info">
             <div className="return-button">
-              <Link className="btn btn-default" to={`/search/${searchData.query}&${searchData.searchType}`}>Search</Link>
+              <Link className="btn btn-default" to={`/search/${searchData.query}?searchType=${searchData.searchType}`}>Search</Link>
             </div>
             <summary>
               <img src={`${POSTER_PATH}${this.props.movie.poster_path}`} alt={this.props.movie.original_title} />
