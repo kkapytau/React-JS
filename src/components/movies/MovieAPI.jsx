@@ -27,18 +27,12 @@ export function getStaticMoviesData() {
 }
 
 export function getSearchData(matchParams, search) {
-  let tmpSearchObj = {
-    searchType: matchParams.searchType,
-    query: (matchParams.query) ? matchParams.query : ''
+  const params = new URLSearchParams(search);
+
+  return {
+    searchType: params.get('searchType'),
+    query: (params.get('query')) ? params.get('query') : matchParams.query
   };
-  if (!matchParams.searchType) {
-    const params = new URLSearchParams(search);
-    tmpSearchObj = {
-      searchType: params.get('searchType'),
-      query: params.get('query')
-    };
-  }
-  return tmpSearchObj;
 }
 
 export function getMovie(id) {

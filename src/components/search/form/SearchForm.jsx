@@ -11,11 +11,22 @@ import { getFilterData, getSearchText } from '../../../actions/FilterActions';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
+    const params = new URLSearchParams(props.location.search);
+    let toggle = true;
+    switch (params.get('searchType')) {
+      case 'movie' :
+        toggle = true;
+        break;
+      case 'person' :
+        toggle = false;
+        break;
+      default:
+        break;
+    }
     this.state = {
       value: '',
-      toggle: true
+      toggle
     };
-    console.log(this.props)
   }
 
   filterHandle(toggle) {
@@ -30,7 +41,7 @@ class SearchForm extends React.Component {
     const { getMovies } = this.props.movieActions;
     getMovies({ searchType: store.getState().filtersState.searchType, query: this.state.value });
     store.dispatch(getSearchText(this.state.value));
-    this.props.history.push(`/search/${this.state.value}&${(this.state.toggle) ? 'movie' : 'person'}`);
+    this.props.history.push(`/search/${this.state.value}?searchType=${(this.state.toggle) ? 'movie' : 'person'}`);
   }
 
   handleChange(event) {
@@ -70,6 +81,9 @@ SearchForm.defaultProps = {
   movieActions: {
     getMovies: null
   },
+  location: {
+    search: ''
+  },
   history: {
     push: null
   }
@@ -78,6 +92,9 @@ SearchForm.defaultProps = {
 SearchForm.propTypes = {
   movieActions: PropTypes.shape({
     getMovies: PropTypes.func
+  }),
+  location: PropTypes.shape({
+    search: PropTypes.string.isRequired
   }),
   history: PropTypes.shape({
     push: PropTypes.func

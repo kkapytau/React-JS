@@ -45,7 +45,7 @@
   .return-button{
     float: right;
     margin: 20px 100px 0 0;
-    button{
+    button,a{
       @include buttonsSize();
       color: $muddyPink;
     }
