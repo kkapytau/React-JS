@@ -5,8 +5,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as movieActions from '../../movies/MovieAPI';
 import './styles.scss';
-import store from '../../../store/Store';
-import { getFilterData, getSearchText } from '../../../actions/FilterActions';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -24,24 +22,28 @@ class SearchForm extends React.Component {
         break;
     }
     this.state = {
-      value: '',
+      value: this.props.query,
       toggle
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      value: newProps.query
+    });
+  }
   filterHandle(toggle) {
     if (this.state.toggle !== toggle) {
       this.setState({ toggle });
-      store.dispatch(getFilterData((toggle) ? 'movie' : 'person'));
     }
   }
 
   submitHandler(event) {
     event.preventDefault();
     const { getMovies } = this.props.movieActions;
-    getMovies({ searchType: store.getState().filtersState.searchType, query: this.state.value });
-    store.dispatch(getSearchText(this.state.value));
-    this.props.history.push(`/search/${this.state.value}?searchType=${(this.state.toggle) ? 'movie' : 'person'}`);
+    const searchType = (this.state.toggle) ? 'movie' : 'person';
+    getMovies({ searchType, query: this.state.value });
+    this.props.history.push(`/search/${this.state.value}?searchType=${searchType}`);
   }
 
   handleChange(event) {
@@ -53,7 +55,7 @@ class SearchForm extends React.Component {
       <form onSubmit={e => this.submitHandler(e)}>
         <fieldset className="search-section">
           <label htmlFor="movie-search">Find your movie</label>
-          <input id="movie-search" type="text" onChange={e => this.handleChange(e)} />
+          <input id="movie-search" type="text" value={this.state.value} onChange={e => this.handleChange(e)} />
           <span id="arrow">⤶</span>
         </fieldset>
         <fieldset className="bottom-section">
@@ -71,6 +73,12 @@ class SearchForm extends React.Component {
   }
 }
 
+const mapStateToProps = function (store) {
+  return {
+    query: store.filtersState.query
+  };
+};
+
 function mapDispatchToProps(dispatch) {
   return {
     movieActions: bindActionCreators(movieActions, dispatch)
@@ -86,7 +94,8 @@ SearchForm.defaultProps = {
   },
   history: {
     push: null
-  }
+  },
+  query: ''
 };
 
 SearchForm.propTypes = {
@@ -98,7 +107,8 @@ SearchForm.propTypes = {
   }),
   history: PropTypes.shape({
     push: PropTypes.func
-  })
+  }),
+  query: PropTypes.string
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(SearchForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchForm));

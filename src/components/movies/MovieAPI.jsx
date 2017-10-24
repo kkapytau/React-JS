@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getMoviesSuccess, getMovieData } from '../../actions/MoviesAction';
+import { getFilterData, getSearchText } from '../../actions/FilterActions';
 
 let moviesData = [];
 
@@ -8,6 +9,8 @@ export function getMovies(params) {
     axios.get(`https://api.themoviedb.org/3/search/${params.searchType}?api_key=813f19e9af5835eae0cc65011eff831b&language=en-US&page=1&include_adult=false&query=${params.query}`)
       .then((response) => {
         moviesData = (params.searchType === 'movie') ? response.data.results : response.data.results[0].known_for;
+        dispatch(getFilterData(params.searchType));
+        dispatch(getSearchText(params.query));
         dispatch(getMoviesSuccess(moviesData));
       })
       .catch((error) => {
