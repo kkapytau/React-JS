@@ -11,7 +11,7 @@ function handler(props) {
   props.getStaticMovie(props.movie.id);
 }
 
-function Movie(props) {
+export function Movie(props) {
   let urlData = props.filtersState;
   if (!props.filtersState.searchText) {
     urlData = props.search;

@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'url-search-params-polyfill';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as movieActions from '../../movies/MovieAPI';
+import { getMovies } from '../../movies/MovieAPI';
 import './styles.scss';
 
-class SearchForm extends React.Component {
+export class SearchForm extends React.Component {
   constructor(props) {
     super(props);
     const params = new URLSearchParams(props.location.search);
@@ -40,9 +41,8 @@ class SearchForm extends React.Component {
 
   submitHandler(event) {
     event.preventDefault();
-    const { getMovies } = this.props.movieActions;
     const searchType = (this.state.toggle) ? 'movie' : 'person';
-    getMovies({ searchType, query: this.state.value });
+    this.props.getMovies({ searchType, query: this.state.value });
     this.props.history.push(`/search/${this.state.value}?searchType=${searchType}`);
   }
 
@@ -81,14 +81,12 @@ const mapStateToProps = function (store) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    movieActions: bindActionCreators(movieActions, dispatch)
+    getMovies: bindActionCreators(getMovies, dispatch)
   };
 }
 
 SearchForm.defaultProps = {
-  movieActions: {
-    getMovies: null
-  },
+  getMovies: null,
   location: {
     search: ''
   },
@@ -99,9 +97,7 @@ SearchForm.defaultProps = {
 };
 
 SearchForm.propTypes = {
-  movieActions: PropTypes.shape({
-    getMovies: PropTypes.func
-  }),
+  getMovies: PropTypes.func,
   location: PropTypes.shape({
     search: PropTypes.string.isRequired
   }),

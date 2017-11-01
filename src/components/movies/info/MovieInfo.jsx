@@ -9,7 +9,7 @@ import { getMovie, getSearchData } from '../MovieAPI';
 import Movies from '../list/Movies';
 import './movieInfo.scss';
 
-class MovieInfo extends React.Component {
+export class MovieInfo extends React.Component {
   componentDidMount() {
     if (!this.props.movie) {
       const params = new URLSearchParams(this.props.location.search);

@@ -1,13 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Movie from '../movie/Movie';
-import { getMovies, getStaticMoviesData, getSearchData } from '../MovieAPI';
+import { getMovies, getStaticMoviesLength, getSearchData } from '../MovieAPI';
 import './movies.scss';
 
-class Movies extends React.Component {
+export class Movies extends React.Component {
   componentDidMount() {
-    if (!getStaticMoviesData()) {
+    if (!getStaticMoviesLength()) {
       this.props.getMovies(getSearchData(this.props.match.params,
         (this.props.search) ? this.props.search : this.props.location.search));
     }

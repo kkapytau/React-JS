@@ -1,9 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './styles.scss';
 
-function SearchResult(props) {
-  // почему в сторе, если его импортить нет мувисов?
+export function SearchResult(props) {
   return <span id="results">{props.movies.length} movies found</span>;
 }
 

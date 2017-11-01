@@ -9,6 +9,8 @@
   "rules": {
     "comma-dangle": ["error", "never"],
     "global-require": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "import/no-named-as-default": 0,
+    "no-unused-expressions": ["error", {"allowTernary": true}]
   }
 }
