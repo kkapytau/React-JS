@@ -15,7 +15,7 @@ export function getMovies(params) {
         dispatch(getMoviesSuccess(moviesData));
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error); // eslint-disable-line no-console
       });
   };
 }
@@ -27,7 +27,7 @@ export function getMovie(id) {
         dispatch(getMovieData(response.data));
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error); // eslint-disable-line no-console
       });
   };
 }
@@ -44,7 +44,6 @@ export function getStaticMoviesLength() {
 
 export function getSearchData(matchParams, search) {
   const params = new URLSearchParams(search);
-
   return {
     searchType: params.get('searchType'),
     query: (params.get('query')) ? params.get('query') : matchParams.query

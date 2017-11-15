@@ -13,7 +13,7 @@ function handler(props) {
 
 export function Movie(props) {
   let urlData = props.filtersState;
-  if (!props.filtersState.searchText) {
+  if (!urlData.searchText) {
     urlData = props.search;
   }
   return (

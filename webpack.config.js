@@ -9,6 +9,7 @@ module.exports = {
 
   entry: {
     searchMovie: [
+      'babel-polyfill',
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8081',
       './index.jsx'
