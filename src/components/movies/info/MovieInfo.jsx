@@ -10,6 +10,12 @@ import Movies from '../list/Movies';
 import './movieInfo.scss';
 
 export class MovieInfo extends React.Component {
+  static fetchData(dispatch, match, location) {
+    const search = location.substr(location.indexOf('?'));
+    const params = new URLSearchParams(search);
+    return getMovie(params.get('id'))(dispatch);
+  }
+
   componentDidMount() {
     if (!this.props.movie) {
       const params = new URLSearchParams(this.props.location.search);
@@ -35,7 +41,7 @@ export class MovieInfo extends React.Component {
               </div>
             </summary>
           </div>
-          <Movies search={this.props.location.search} />
+          <Movies {...this.props} />
         </div>
         : <div>No Data</div>
     );

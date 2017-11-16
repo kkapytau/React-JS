@@ -1,8 +1,7 @@
-import qs from 'qs';
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { matchRoutes } from 'react-router-config';
+import { renderRoutes, matchRoutes } from 'react-router-config';
 import { StaticRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/Store';
@@ -48,36 +47,40 @@ function renderFullPage(html, preloadedState) {
 }
 
 app.get('*', (req, res) => {
-  const context = {};
   // Create a new Redux store instance
   const store = configureStore();
 
-  const appWithRouter = (
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={context}>
-        { routes }
-      </StaticRouter>
-    </Provider>
-  );
+  const branch = matchRoutes(routes, req.path);
 
-  if (context.url) {
-    res.redirect(context.url);
-    return;
-  }
+  const promises = branch.map(({ route, match }) => {
+    const { fetchData } = route.component;
+    return fetchData instanceof Function ?
+      fetchData(store.dispatch, match, req.url) :
+      Promise.resolve(null);
+  });
 
-  const html = renderToString(appWithRouter);
+  return Promise.all(promises).then(() => {
+    const context = {};
+    const appWithRouter = (
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={context}>
+          { renderRoutes(routes) }
+        </StaticRouter>
+      </Provider>
+    );
 
-  const branch = matchRoutes(routes, req.url);
+    const html = renderToString(appWithRouter);
 
-  console.log('store');
-  console.log(branch);
-  //console.log(qs.parse(req.query));
-  //console.log(store.getState());
+    if (context.url) {
+      res.redirect(context.url);
+      return;
+    }
 
-  // Grab the initial state from our Redux store
-  const preloadedState = store.getState();
+    // Grab the initial state from our Redux store
+    const preloadedState = store.getState();
 
-  res.status(200).send(renderFullPage(html, preloadedState));
+    res.status(200).send(renderFullPage(html, preloadedState));
+  });
 });
 
 app.listen(PORT, () => {

@@ -9,8 +9,7 @@ import './movies.scss';
 export class Movies extends React.Component {
   componentDidMount() {
     if (!getStaticMoviesLength()) {
-      this.props.getMovies(getSearchData(this.props.match.params,
-        (this.props.search) ? this.props.search : this.props.location.search));
+      this.props.getMovies(getSearchData(this.props.match.params, this.props.location.search));
     }
   }
 
